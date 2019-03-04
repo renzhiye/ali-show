@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard &laquo; Admin</title>
+  <link rel="stylesheet" href="/public/assets/vendors/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="/public/assets/vendors/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="/public/assets/vendors/nprogress/nprogress.css">
+  <link rel="stylesheet" href="/public/assets/css/admin.css">
+  <script src="/public/assets/vendors/nprogress/nprogress.js"></script>
+  {{block 'head'}}{{/block}}
+</head>
+
+<body>
+  <div class="main">
+    {{include '../includes/navbar.html'}}
+    {{block 'body'}}{{/block}}
+  </div>
+  {{include '../includes/aside.html'}}
+  <script src="/public/assets/vendors/jquery/jquery.js"></script>
+  <script src="/public/assets/vendors/bootstrap/js/bootstrap.js"></script>
+  <script src="/public/assets/vendors/art-template/template-web.js"></script>
+  <script src="/public/assets/vendors/jquery-validation/jquery.validate.js"></script>
+  <script src="/public/assets/vendors/jquery-validation/localization/messages_zh.js"></script>
+  <script>
+    template.defaults.rules[1].test = /{%([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*%}/
+  </script>
+  <script>
+    //全局错误处理
+    $(document).ajaxError(function (event, jqxhr, settings) {
+      console.log('event => ', event)
+      console.log('jqxhr => ', jqxhr)
+      console.log('settings => ', settings)
+      if (jqxhr.status >= 500) {
+        window.alert('服务端内部异常，请稍后重试')
+      }
+    })
+
+  </script>
+  {{block 'script'}}{{/block}}
+</body>
+
+</html>
